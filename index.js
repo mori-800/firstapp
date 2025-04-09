@@ -1,10 +1,13 @@
 const express = require("express");
 const app = express();
 
-// テンプレートエンジンにEJS使用するように設定
-app.set("view engine", "ejs")
+// クライアントから送信されたデータを解析し、req.bodyオブジェクトとしてアクセスできるようにする
+app.use(express.urlencoded({ extended: true }));
 
-// publicフォルダ内のファイルを、を静的ファイルとして扱うよう設定
+// テンプレートエンジンにEJS使用するように設定
+app.set("view engine", "ejs");
+
+// publicディレクトリ内のファイルを、を静的ファイルとして扱うよう設定
 app.use("/public", express.static("public"));
 
 // ルーティングを読み込む
